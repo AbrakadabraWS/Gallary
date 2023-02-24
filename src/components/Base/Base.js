@@ -29,7 +29,7 @@ export default function Base({ children }) {
       className={styles.base}
     >
       <Preloader />
-      <Collage height={height} width={width} picturesList={children.dir} />
+      <Collage height={height} width={width} picturesList={children.picturesList} />
     </div>
   )
 }

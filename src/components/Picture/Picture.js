@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import style from './Picture.module.css'
 import { Button, Carousel, Image, Modal } from 'react-bootstrap';
 
@@ -15,14 +15,19 @@ export const Picture = ({
 
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = useCallback(() => {
+        setShow(false);
+    }, []);
+    const handleShow = useCallback(() => {
+        setShow(true);
+    }, []);
 
     const [carouselIndex, setCarouselIndex] = useState(pictureIndex);
 
-    const handleSelect = (selectedIndex, e) => {
+    const handleSelect = useCallback((selectedIndex, e) => {
         setCarouselIndex(selectedIndex);
-    };
+    }, []);
+
     return (
         <>
             <div
@@ -37,7 +42,7 @@ export const Picture = ({
                 <div
                     className={style.pictureForm}
                     style={{
-                        backgroundImage: `url(${pictureList[pictureIndex].src})`
+                        backgroundImage: `url(${pictureList[pictureIndex].srcCompress})`
                     }}
                     onClick={handleShow}
                 >
