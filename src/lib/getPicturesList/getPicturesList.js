@@ -15,20 +15,26 @@ const compression = (dir_no_compression) => {
             .toFile(`public/pictures/compression/${picture}`)
             .then(() => { })
     })
+
+    return {
+        dir_preview: fs.readdirSync('public/pictures/compression/preview/'),
+        dir_compression: fs.readdirSync('public/pictures/compression/'),
+    }
 }
 
 export const getPicturesList = async (ctx) => {
     let dir_no_compression = fs.readdirSync('public/pictures/no_compression/');
-    let dir_preview;
-    let dir_compression;
-
+    let dir_preview = fs.readdirSync('public/pictures/compression/preview/');
+    let dir_compression = fs.readdirSync('public/pictures/compression/');
+    let compressionResult
     let picturesList;
 
-    compression(dir_no_compression);
+    if (dir_no_compression.length !== dir_preview.length && dir_no_compression.length !== dir_compression) {
+        compressionResult = compression(dir_no_compression);
 
-    dir_preview = fs.readdirSync('public/pictures/compression/preview/');
-    dir_compression = fs.readdirSync('public/pictures/compression/');
-
+        dir_preview = compressionResult.dir_preview;
+        dir_compression = compressionResult.dir_compression;
+    }
 
     picturesList = dir_compression.map(fileName => {
         return {
