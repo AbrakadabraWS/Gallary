@@ -70,36 +70,45 @@ const dividingCanvas = (arrayPictures, numberOfPictures) => {
     return arrayPictures;
 }
 
-function importAllImages() {
-    console.log('test')
-}
-
-
-export const Collage = ({ height, width }) => {
+export const Collage = ({ height, width, picturesList }) => {
     const [pictures, setPictures] = useState(<div></div>);
-    const numberOfPictures = 29;
+    let numberOfPictures = 20;
 
 
     useEffect(() => {
-        console.log(height);
-        console.log(width);
+        console.log('Всего загружено' + picturesList.length + 'фото')
         if (height > 0 && width > 0) {
+            if (numberOfPictures < picturesList.length) {
+                numberOfPictures = picturesList.length;
+            }
+
             let arrayPictures = dividingCanvas([{ height: height, width: width, x: 0, y: 0 }], numberOfPictures);
-            let arrayImages = importAllImages();
-            console.log(arrayImages)
+            let pictureListCounter = random(0, picturesList.length - 1);
+
             setPictures(arrayPictures.map((picture, index) => {
-                return (
+
+                let resultTag = (
                     <Picture
                         width={picture.width}
                         height={picture.height}
                         positionX={picture.x}
                         positionY={picture.y}
                         index={index}
-                        // pictureSrc = 
+                        pictureIndex={pictureListCounter}
+                        pictureList={picturesList}
                         key={index}
                     />
-                )
-            }))
+                );
+
+                if (pictureListCounter >= picturesList.length - 1) {
+                    pictureListCounter = 0;
+                }
+                else {
+                    pictureListCounter++;
+                }
+
+                return resultTag;
+            }));
         }
     }, [height, width]);
 
