@@ -1,7 +1,6 @@
 
 'use client';
 import styles from './Base.module.css';
-import { Preloader } from '../Preloader/Preloader';
 import { Collage } from '@/components/Collage/Collage';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -28,8 +27,7 @@ export default function Base({ children }) {
       ref={mainRef}
       className={styles.base}
     >
-      <Preloader />
-      <Collage height={height} width={width} picturesList={children.picturesList} />
+      <Collage height={height} width={width} picturesList={children} />
     </div>
   )
 }

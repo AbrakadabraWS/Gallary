@@ -76,14 +76,14 @@ export const Collage = ({ height, width, picturesList }) => {
 
 
     useEffect(() => {
-        console.log('Всего загружено' + picturesList.length + 'фото')
+        console.log('Всего загружено ' + picturesList.files.length + ' фото')
         if (height > 0 && width > 0) {
-            if (numberOfPictures < picturesList.length) {
-                numberOfPictures = picturesList.length;
+            if (numberOfPictures < picturesList.files.length) {
+                numberOfPictures = picturesList.files.length;
             }
 
             let arrayPictures = dividingCanvas([{ height: height, width: width, x: 0, y: 0 }], numberOfPictures);
-            let pictureListCounter = random(0, picturesList.length - 1);
+            let pictureListCounter = random(0, picturesList.files.length - 1);
 
             setPictures(arrayPictures.map((picture, index) => {
 
@@ -100,7 +100,7 @@ export const Collage = ({ height, width, picturesList }) => {
                     />
                 );
 
-                if (pictureListCounter >= picturesList.length - 1) {
+                if (pictureListCounter >= picturesList.files.length - 1) {
                     pictureListCounter = 0;
                 }
                 else {

@@ -2,7 +2,7 @@
     position: absolute;
     /* border-style: solid; */
     box-sizing: border-box;
-    padding: 5px;
+    padding: 0.2rem;
 }
 
 .pictureForm {
@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    border-style: solid;
+    /* border-style: solid; */
     background-color: blueviolet;
     background-size: cover;
     background-position: center;

@@ -42,7 +42,7 @@ export const Picture = ({
                 <div
                     className={style.pictureForm}
                     style={{
-                        backgroundImage: `url(${pictureList[pictureIndex].srcCompress})`
+                        backgroundImage: `url(${pictureList.srcPreview}/${pictureList.files[pictureIndex]})`
                     }}
                     onClick={handleShow}
                 >
@@ -62,7 +62,7 @@ export const Picture = ({
                         onSelect={handleSelect}
                     >
                         {
-                            pictureList.map((picture, index) => {
+                            pictureList.files.map((picture, index) => {
                                 return (
                                     <Carousel.Item
                                         className={style.carouselItem}
@@ -72,7 +72,7 @@ export const Picture = ({
                                             className={style.caroucelImgBlock}
                                         >
                                             <Image
-                                                src={`${picture.src}`}
+                                                src={`${pictureList.srcCompression}/${picture}`}
                                                 className={style.caroucelImg}
                                             />
                                         </div>

@@ -31,4 +31,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-/public/pictures/*
+/pictures/*
+/public/images/preview/*
+/public/images/compression/*
